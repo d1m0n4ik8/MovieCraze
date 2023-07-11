@@ -3,7 +3,7 @@ import Hero from './Hero'
 
 const Home: FC = () => {
 	return (
-		<div className='h-screen'>
+		<div className='overflow-hidden '>
 			<Hero />
 		</div>
 	)

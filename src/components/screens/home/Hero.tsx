@@ -2,13 +2,16 @@ import { FC } from 'react'
 import 'swiper/css'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useGetMovieListQuery } from '../../../store/api'
+import HeroItem from './HeroItem'
 const Hero: FC = () => {
+	const { data } = useGetMovieListQuery(1)
+
 	return (
-		<>
+		<div>
 			<Swiper
-				className='w-full h-1/2'
+				className='w-screen h-screen'
 				slidesPerView={1}
-				spaceBetween={30}
 				grabCursor
 				loop={true}
 				autoplay={{
@@ -16,17 +19,14 @@ const Hero: FC = () => {
 					disableOnInteraction: false,
 				}}
 				modules={[Autoplay]}>
-				<SwiperSlide>
-					<img src='https://static.vecteezy.com/system/resources/previews/005/502/524/original/cinema-background-concept-movie-theater-object-on-red-curtain-background-and-movie-time-with-electric-bulbs-frame-illustration-free-vector.jpg' />
-				</SwiperSlide>
-				<SwiperSlide>
-					<img src='https://static.vecteezy.com/system/resources/previews/005/502/524/original/cinema-background-concept-movie-theater-object-on-red-curtain-background-and-movie-time-with-electric-bulbs-frame-illustration-free-vector.jpg' />
-				</SwiperSlide>
-				<SwiperSlide>
-					<img src='https://static.vecteezy.com/system/resources/previews/005/502/524/original/cinema-background-concept-movie-theater-object-on-red-curtain-background-and-movie-time-with-electric-bulbs-frame-illustration-free-vector.jpg' />
-				</SwiperSlide>
+				{data?.results.slice(0, 4).map(item => (
+					<SwiperSlide key={item.id}>
+						<HeroItem item={item} />
+					</SwiperSlide>
+				))}
 			</Swiper>
-		</>
+			<div className='h-96'></div>
+		</div>
 	)
 }
 
