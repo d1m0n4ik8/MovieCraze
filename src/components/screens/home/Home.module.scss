@@ -4,14 +4,14 @@
 
 @layer components {
 	.swiper {
-		@apply w-screen h-screen;
+		@apply w-screen h-[120vh] mx-0;
 
 		& .slide {
 			& .heroItem {
 				@apply w-full h-full flex relative;
 
 				&Col {
-					@apply w-1/2 h-full flex items-center flex-col justify-center;
+					@apply h-full flex items-center flex-col justify-center;
 				}
 			}
 		}

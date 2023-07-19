@@ -4,7 +4,7 @@ import Home from './components/screens/home/Home'
 
 const App: FC = () => {
 	return (
-		<div className=' min-w-screen min-h-screen flex flex-col bg-neutral-800 overflow-x-hidden'>
+		<div className=' max-w-screen min-h-screen flex flex-col bg-neutral-950 overflow-x-hidden'>
 			<Header />
 			<main className='flex-grow mx-auto'>
 				<Home />

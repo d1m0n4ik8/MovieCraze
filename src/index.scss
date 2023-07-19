@@ -1,9 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+	box-sizing: border-box;
+}
 
 body {
-	background-color: #000;
 	font-size: 16px;
 	color: #fff;
+}
+
+@layer components {
+	.button {
+		@apply rounded-lg bg-gradient-to-r from-green-400 to-cyan-400 px-6 py-3;
+	}
+	.outlinedButton {
+		@apply border border-cyan-400 rounded-lg hover:bg-gradient-to-r from-green-400 to-cyan-400 px-6 py-3 transition-colors;
+	}
 }

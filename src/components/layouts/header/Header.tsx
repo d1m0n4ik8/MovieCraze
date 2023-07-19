@@ -7,7 +7,7 @@ const Header: FC = () => {
 	const [navColor, setNavColor] = useState('bg-transparent')
 
 	const listenScrollEvent = () => {
-		window.scrollY > 10 ? setNavColor('bg-neutral-800') : setNavColor('bg-transparent')
+		window.scrollY > 10 ? setNavColor('bg-neutral-950') : setNavColor('bg-transparent')
 		window.scrollY > 10 ? setNavSize('h-16') : setNavSize('h-32')
 	}
 
@@ -20,7 +20,7 @@ const Header: FC = () => {
 
 	return (
 		<header
-			className={`fixed w-full flex items-center text-blue-50 p-4 px-10 text-base md:text-lg z-10 ${navSize} ${navColor} transition-all duration-500 `}>
+			className={`fixed w-full flex items-center text-blue-50 p-4 px-10 text-base md:text-lg z-20 ${navSize} ${navColor} transition-all duration-500 `}>
 			<div className='container mx-auto flex justify-between items-center  '>
 				<img
 					className='w-36 md:w-40 hover:cursor-pointer'
