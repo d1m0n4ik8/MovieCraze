@@ -14,23 +14,26 @@ const Hero: FC = () => {
 	const sliderItems = data?.results.slice(0, 4)
 	return (
 		<div>
-			{isLoading ? (
-				<div>Loading...</div>
-			) : (
-				<Swiper
-					className={style.swiper}
-					slidesPerView={1}
-					grabCursor
-					loop={true}
-					autoplay={{ delay: 5000, pauseOnMouseEnter: true }}
-					modules={[Autoplay]}>
-					{sliderItems?.map(item => (
+			<Swiper
+				className={style.swiper}
+				slidesPerView={1}
+				grabCursor
+				loop={true}
+				autoplay={{ delay: 5000, pauseOnMouseEnter: true }}
+				modules={[Autoplay]}>
+				{isLoading ? (
+					<SwiperSlide className={style.slide}>
+						<HeroItem item={null} setTrailerId={setTrailerId} setModalIsOpened={setModalIsOpened} />
+					</SwiperSlide>
+				) : (
+					sliderItems?.map(item => (
 						<SwiperSlide className={style.slide} key={item.id}>
 							<HeroItem item={item} setTrailerId={setTrailerId} setModalIsOpened={setModalIsOpened} />
 						</SwiperSlide>
-					))}
-				</Swiper>
-			)}
+					))
+				)}
+			</Swiper>
+
 			{trailerId && (
 				<TrailerModal modalIsOpened={modalIsOpened} setModalIsOpened={setModalIsOpened} trailerId={trailerId} />
 			)}

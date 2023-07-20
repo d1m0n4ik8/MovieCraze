@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IMovieVideo } from '../interfaces/IMovieVideo'
 import { ITrendingMovies } from '../interfaces/ITrendingMovies'
 import { ITrendingPeoples } from '../interfaces/ITrendingPeoples'
+import { ITrendingTV } from '../interfaces/ITrendingTV'
 import { IUpcomingMovie } from '../interfaces/IUpcomingMovie'
 export const getOriginalImagePath = (imagePath: string) => `https://image.tmdb.org/t/p/original/${imagePath}`
 export const getWidth500ImagePath = (imagePath: string) => `https://image.tmdb.org/t/p/w500/${imagePath}`
@@ -29,7 +30,7 @@ export const movieApi = createApi({
 		getTrendingMovies: builder.query<ITrendingMovies, string>({
 			query: time => `trending/movie/${time}`,
 		}),
-		getTrendingTV: builder.query<ITrendingMovies, string>({
+		getTrendingTV: builder.query<ITrendingTV, string>({
 			query: time => `trending/tv/${time}`,
 		}),
 		getTrendingPeople: builder.query<ITrendingPeoples, string>({
