@@ -1,23 +1,22 @@
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useGetTrendingPeopleQuery } from '../../../../store/api'
+import { useGetTrendingAllQuery } from '../../../../store/api'
+import MovieSwiper from '../swiper/MovieSwiper'
 import TimeTab from '../timeTab/TimeTab'
-import MovieSwiper from '../trendingSwiper/TrendingSwiper'
 
-const TrendingPeople: FC = () => {
+const TrendingAll: FC = () => {
 	const [time, setTime] = useState('day')
-	const { data } = useGetTrendingPeopleQuery(time)
+	const { data } = useGetTrendingAllQuery(time)
 
 	return (
 		<>
 			<div className='w-full py-10'>
 				<div className='flex justify-between container p-10'>
 					<div className='text-4xl flex'>
-						<div>Trending people</div>
+						<div>Trending all</div>
 						<TimeTab time={time} setTime={setTime} />
 					</div>
-
-					<Link to='/people' className='outlinedButton'>
+					<Link to='/movie' className='outlinedButton'>
 						More...
 					</Link>
 				</div>
@@ -27,4 +26,4 @@ const TrendingPeople: FC = () => {
 	)
 }
 
-export default TrendingPeople
+export default TrendingAll

@@ -1,6 +1,6 @@
 import { FC, SetStateAction } from 'react'
 import { useGetMovieVideoQuery } from '../../../../store/api'
-import Modal from '../../../ui/Modal/Modal'
+import Modal from '../../../ui/modal/Modal'
 type trailerPropsType = {
 	modalIsOpened: boolean
 	setModalIsOpened: (value: SetStateAction<boolean>) => void

@@ -1,8 +1,8 @@
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useGetTrendingTVQuery } from '../../../../store/api'
+import MovieSwiper from '../swiper/MovieSwiper'
 import TimeTab from '../timeTab/TimeTab'
-import MovieSwiper from '../trendingSwiper/TrendingSwiper'
 
 const TrendingTV: FC = () => {
 	const [time, setTime] = useState('day')
