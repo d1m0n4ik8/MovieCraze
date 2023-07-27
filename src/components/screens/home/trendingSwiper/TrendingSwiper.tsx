@@ -3,15 +3,15 @@ import Skeleton from 'react-loading-skeleton'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { ITrendingResult } from '../../../../interfaces/ITrendingMovies'
+import { ITrendingPeoplesResult } from '../../../../interfaces/ITrendingPeoples'
 import { ITrendingTVResult } from '../../../../interfaces/ITrendingTV'
-import { getWidth500ImagePath } from '../../../../store/api'
 import Card from '../../../ui/card/Card'
 
 type propsType = {
-	sliderItems: (ITrendingResult | ITrendingTVResult)[] | undefined
+	sliderItems: (ITrendingResult | ITrendingTVResult | ITrendingPeoplesResult)[] | undefined
 }
 
-const MovieSwiper: FC<propsType> = ({ sliderItems }) => {
+const TrendingSwiper: FC<propsType> = ({ sliderItems }) => {
 	return sliderItems ? (
 		<Swiper
 			className='w-[90vw]'
@@ -25,7 +25,7 @@ const MovieSwiper: FC<propsType> = ({ sliderItems }) => {
 					<Card
 						id={item.id}
 						mediaType={item.media_type}
-						imageUrl={getWidth500ImagePath(item.poster_path)}
+						imageUrl={'poster_path' in item ? item.poster_path : item.profile_path}
 						title={'title' in item ? item.title : item.name}
 					/>
 				</SwiperSlide>
@@ -43,4 +43,4 @@ const MovieSwiper: FC<propsType> = ({ sliderItems }) => {
 	)
 }
 
-export default MovieSwiper
+export default TrendingSwiper

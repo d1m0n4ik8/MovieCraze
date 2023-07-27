@@ -1,21 +1,18 @@
-import { FC, Suspense, lazy } from 'react'
+import { FC, Suspense } from 'react'
 
 import Footer from '../../layouts/footer/Footer'
 import Hero from './hero/Hero'
-const TrendingAll = lazy(() => import('./trending/TrendingAll'))
-const TrendingMovies = lazy(() => import('./trending/TrendingMovies'))
-const TrendingPeople = lazy(() => import('./trending/TrendingPeople'))
-const TrendingTV = lazy(() => import('./trending/TrendingTV'))
+import Trending from './trending/Trending'
 
 const Home: FC = () => {
 	return (
 		<div className='overflow-hidden max-w-full'>
 			<Suspense>
 				<Hero />
-				<TrendingAll />
-				<TrendingMovies />
-				<TrendingTV />
-				<TrendingPeople />
+				<Trending title='Trending all' linkTo='movie' category='all' />
+				<Trending title='Trending movies' linkTo='movie' category='movie' />
+				<Trending title='Trending TV' linkTo='tv' category='tv' />
+				<Trending title='Trending people' linkTo='person' category='people' />
 			</Suspense>
 			<Footer />
 		</div>
