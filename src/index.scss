@@ -12,9 +12,9 @@ body {
 
 @layer components {
 	.button {
-		@apply rounded-lg bg-gradient-to-r from-green-400 to-cyan-400 px-6 py-3;
+		@apply rounded-lg bg-gradient-to-r from-green-400 to-cyan-400 px-6 py-3 flex items-center cursor-pointer;
 	}
 	.outlinedButton {
-		@apply border border-cyan-400 rounded-lg hover:bg-gradient-to-r from-green-400 to-cyan-400 px-6 py-3 transition-colors;
+		@apply border border-cyan-400 rounded-lg hover:bg-gradient-to-r from-green-400 to-cyan-400 px-6 py-3 transition-colors flex items-center cursor-pointer;
 	}
 }

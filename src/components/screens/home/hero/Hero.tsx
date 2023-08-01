@@ -1,11 +1,11 @@
-import { FC, lazy, useState } from 'react'
+import { FC, useState } from 'react'
 import 'swiper/css'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useGetMovieListQuery } from '../../../../store/api'
 import style from '../Home.module.scss'
 import HeroItem from './HeroItem'
-const TrailerModal = lazy(() => import('./TrailerModal'))
+import TrailerModal from './TrailerModal'
 
 const Hero: FC = () => {
 	const { data, isLoading } = useGetMovieListQuery(1)

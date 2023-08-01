@@ -40,9 +40,9 @@ const HeroItem: FC<HeroItemPropsType> = ({ item, setTrailerId, setModalIsOpened 
 					)}
 
 					{item ? (
-						<div className='space-x-4 pt-8 text-2xl'>
-							<Link to={`/movie/${item?.id}`}>
-								<button className='button'>Watch now</button>
+						<div className='flex space-x-4 pt-8 text-2xl'>
+							<Link to={`/movie/${item?.id}`} className='button'>
+								Watch now
 							</Link>
 							<button className='outlinedButton' onClick={trailerHandler}>
 								Watch now
