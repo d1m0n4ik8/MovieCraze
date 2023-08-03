@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IDiscoverMovies } from '../interfaces/IDiscoverMovies'
+import { IMovieCredits } from '../interfaces/IMovieCredits'
 import { IMovieDetails } from '../interfaces/IMovieDetails'
 import { IMovieVideo } from '../interfaces/IMovieVideo'
 import { ITrendingMovies } from '../interfaces/ITrendingMovies'
@@ -46,7 +47,10 @@ export const movieApi = createApi({
 			query: params => ({ url: 'search/movie', params }),
 		}),
 		getMovieDetails: builder.query<IMovieDetails, string>({
-			query: id => `movie/${id}`,
+			query: movieId => `movie/${movieId}`,
+		}),
+		getMovieCredits: builder.query<IMovieCredits, string>({
+			query: movieId => `movie/${movieId}/credits`,
 		}),
 	}),
 })
@@ -61,4 +65,5 @@ export const {
 	useLazyGetDiscoverMoviesQuery,
 	useLazyGetSearchedMoviesQuery,
 	useGetMovieDetailsQuery,
+	useGetMovieCreditsQuery,
 } = movieApi

@@ -1,11 +1,19 @@
 import { FC } from 'react'
 import { useParams } from 'react-router-dom'
-import { getOriginalImagePath, getWidth500ImagePath, useGetMovieDetailsQuery } from '../../../store/api'
+import {
+	getOriginalImagePath,
+	getWidth500ImagePath,
+	useGetMovieDetailsQuery,
+	useGetMovieVideoQuery,
+} from '../../../store/api'
+import MovieCredits from './MovieCredits'
 
 const SingleMovie: FC = () => {
 	const { movieId } = useParams()
 
-	const { data } = useGetMovieDetailsQuery(movieId ? movieId : '0')
+	const { data } = useGetMovieDetailsQuery(movieId || '0')
+	const { data: TrailerLinkData } = useGetMovieVideoQuery(movieId ? +movieId : 0)
+
 	if (!data) return <div>don't find</div>
 	return (
 		<div
@@ -33,15 +41,28 @@ const SingleMovie: FC = () => {
 					</div>
 					<div className='text-xl text-justify pt-4'>{data.overview}</div>
 					<div className='flex space-x-8 pt-8'>
-						<a href={'https://www.youtube.com/embed/'} className='button text-2xl rounded-2xl'>
+						<a
+							href={`https://www.youtube.com/embed/${TrailerLinkData?.results[0].key}`}
+							className='button text-2xl rounded-2xl'
+							target='_blank'>
 							Watch trailer
 						</a>
 						<div className='border-2 border-teal-400 rounded-full w-16 h-16 flex justify-center items-center'>
 							{data.vote_average.toFixed(2)}
 						</div>
 					</div>
+					<MovieCredits movieId={movieId || ''} />
 				</div>
 			</div>
+
+			<iframe
+				src={`https://3442534688564.svetacdn.in/msNIXXBblTTU?imdb_id=tt0388629`}
+				width='100%'
+				height='100%'
+				title='video'
+				loading='eager'
+				allowFullScreen={true}
+			/>
 		</div>
 	)
 }

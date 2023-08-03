@@ -10,6 +10,7 @@ type propsType = {
 }
 
 const Card: FC<propsType> = ({ id, mediaType, imageUrl, title }) => {
+	//how to return component with Image and title?P
 	return (
 		<div className='w-48 last:grow'>
 			<Link to={`/${mediaType}/${id}`}>
