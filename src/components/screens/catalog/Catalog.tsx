@@ -10,13 +10,15 @@ type propsType = {
 
 const Catalog: FC<propsType> = ({ category }) => {
 	const [queryString, setQueryString] = useState('')
-	const { movieList, setMovieList, isLoading, page, totalPages, setPage } = useMediaList(queryString, category)
+	const [page, setPage] = useState(1)
+	const { movieList, setMovieList, isLoading, totalPages } = useMediaList(queryString, category, page)
+
 	const loadMoreHandler = () => {
 		setPage(prev => prev + 1)
 	}
 
 	const searchHandler = (searchString: string) => {
-		if (searchString.trim().length) {
+		if (searchString.trim().length && searchString !== queryString) {
 			setMovieList([])
 			setPage(1)
 			setQueryString(searchString.trim())
