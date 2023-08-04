@@ -1,12 +1,16 @@
-export interface IUpcomingMovie {
-	dates: Dates
-	page: number
-	results: IResult[]
-	total_pages: number
-	total_results: number
+import { IResponse } from './IAdditionalInfo'
+
+interface IDates {
+	maximum: string
+	minimum: string
 }
 
-export interface IResult {
+export interface IUpcomingMovie extends IResponse {
+	dates: IDates
+	results: IMovie[]
+}
+
+export interface IMovie {
 	adult: boolean
 	backdrop_path: string
 	genre_ids: number[]
@@ -21,9 +25,4 @@ export interface IResult {
 	video: boolean
 	vote_average: number
 	vote_count: number
-}
-
-interface Dates {
-	maximum: string
-	minimum: string
 }

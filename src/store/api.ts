@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IDiscoverMovies } from '../interfaces/IDiscoverMovies'
-import { IMovieCredits } from '../interfaces/IMovieCredits'
-import { IMovieDetails } from '../interfaces/IMovieDetails'
-import { IMovieVideo } from '../interfaces/IMovieVideo'
-import { ITrendingMovies } from '../interfaces/ITrendingMovies'
-import { ITrendingPeoples } from '../interfaces/ITrendingPeoples'
-import { ITrendingTV } from '../interfaces/ITrendingTV'
-import { IUpcomingMovie } from '../interfaces/IUpcomingMovie'
+import { ICredits } from '../interfaces/ICredits'
+import { IDetailsData } from '../interfaces/IDetails'
+import { IDiscoverData } from '../interfaces/IDiscover'
+import { IUpcomingMovie } from '../interfaces/IMovie'
+import { ITrailerVideo } from '../interfaces/ITrailerVideo'
+import { TrendingDataType } from '../interfaces/ITrending'
+import { categoryAndTime, discoveryType, movieTvInfoType, searchType } from './api.types'
+
 export const getOriginalImagePath = (imagePath: string) => `https://image.tmdb.org/t/p/original/${imagePath}`
 export const getWidth500ImagePath = (imagePath: string) => `https://image.tmdb.org/t/p/w500/${imagePath}`
 
@@ -25,45 +25,33 @@ export const movieApi = createApi({
 		getMovieList: builder.query<IUpcomingMovie, number>({
 			query: page => `movie/upcoming?language=en-US&page=${page}`,
 		}),
-		getMovieVideo: builder.query<IMovieVideo, number>({
-			query: movieId => `movie/${movieId}/videos`,
+		getTrailerVideo: builder.query<ITrailerVideo, movieTvInfoType>({
+			query: ({ id, category }) => `${category}/${id}/videos`,
 		}),
-		getTrendingAll: builder.query<ITrendingMovies, string>({
-			query: time => `trending/all/${time}`,
+		getTrendingData: builder.query<TrendingDataType, categoryAndTime>({
+			query: ({ category, time }) => `trending/${category}/${time}`,
 		}),
-		getTrendingMovies: builder.query<ITrendingMovies, string>({
-			query: time => `trending/movie/${time}`,
+		getDiscover: builder.query<IDiscoverData, discoveryType>({
+			query: ({ category, params }) => ({ url: `discover/${category}`, params }),
 		}),
-		getTrendingTV: builder.query<ITrendingTV, string>({
-			query: time => `trending/tv/${time}`,
+		getSearched: builder.query<IDiscoverData, searchType>({
+			query: ({ category, params }) => ({ url: `search/${category}`, params }),
 		}),
-		getTrendingPeople: builder.query<ITrendingPeoples, string>({
-			query: time => `trending/person/${time}`,
+		getDetails: builder.query<IDetailsData, movieTvInfoType>({
+			query: ({ id, category }) => `${category}/${id}`,
 		}),
-		getDiscoverMovies: builder.query<IDiscoverMovies, object>({
-			query: params => ({ url: 'discover/movie', params }),
-		}),
-		getSearchedMovies: builder.query<IDiscoverMovies, object>({
-			query: params => ({ url: 'search/movie', params }),
-		}),
-		getMovieDetails: builder.query<IMovieDetails, string>({
-			query: movieId => `movie/${movieId}`,
-		}),
-		getMovieCredits: builder.query<IMovieCredits, string>({
-			query: movieId => `movie/${movieId}/credits`,
+		getCredits: builder.query<ICredits, movieTvInfoType>({
+			query: ({ id, category }) => `${category}/${id}/credits`,
 		}),
 	}),
 })
 
 export const {
 	useGetMovieListQuery,
-	useGetMovieVideoQuery,
-	useGetTrendingMoviesQuery,
-	useGetTrendingTVQuery,
-	useGetTrendingAllQuery,
-	useGetTrendingPeopleQuery,
-	useLazyGetDiscoverMoviesQuery,
-	useLazyGetSearchedMoviesQuery,
-	useGetMovieDetailsQuery,
-	useGetMovieCreditsQuery,
+	useGetTrailerVideoQuery,
+	useGetTrendingDataQuery,
+	useLazyGetDiscoverQuery,
+	useLazyGetSearchedQuery,
+	useGetDetailsQuery,
+	useGetCreditsQuery,
 } = movieApi

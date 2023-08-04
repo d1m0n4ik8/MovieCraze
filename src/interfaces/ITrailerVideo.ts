@@ -1,9 +1,4 @@
-export interface IMovieVideo {
-	id: number
-	results: Result[]
-}
-
-interface Result {
+interface ITrailer {
 	iso_639_1: string
 	iso_3166_1: string
 	name: string
@@ -14,4 +9,9 @@ interface Result {
 	official: boolean
 	published_at: string
 	id: string
+}
+
+export interface ITrailerVideo {
+	id: number
+	results: ITrailer[]
 }

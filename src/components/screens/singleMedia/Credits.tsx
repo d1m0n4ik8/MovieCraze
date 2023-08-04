@@ -1,11 +1,13 @@
 import { FC } from 'react'
-import { getWidth500ImagePath, useGetMovieCreditsQuery } from '../../../store/api'
+import { getWidth500ImagePath, useGetCreditsQuery } from '../../../store/api'
+import { movieTvType } from '../../../store/api.types'
 type propsTypes = {
-	movieId: string
+	id: string
+	category: movieTvType
 }
 
-const MovieCredits: FC<propsTypes> = ({ movieId }) => {
-	const { data } = useGetMovieCreditsQuery(movieId)
+const MovieCredits: FC<propsTypes> = ({ id, category }) => {
+	const { data } = useGetCreditsQuery({ id, category })
 
 	return (
 		<div className='flex space-x-4 py-4'>

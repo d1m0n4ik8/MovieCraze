@@ -3,16 +3,20 @@ import { useParams } from 'react-router-dom'
 import {
 	getOriginalImagePath,
 	getWidth500ImagePath,
-	useGetMovieDetailsQuery,
-	useGetMovieVideoQuery,
+	useGetDetailsQuery,
+	useGetTrailerVideoQuery,
 } from '../../../store/api'
-import MovieCredits from './MovieCredits'
+import { movieTvType } from '../../../store/api.types'
+import Credits from './Credits'
 
-const SingleMovie: FC = () => {
-	const { movieId } = useParams()
-
-	const { data } = useGetMovieDetailsQuery(movieId || '0')
-	const { data: TrailerLinkData } = useGetMovieVideoQuery(movieId ? +movieId : 0)
+type propsType = {
+	category: movieTvType
+}
+const SingleMedia: FC<propsType> = ({ category }) => {
+	const { id = '' } = useParams()
+	const { data } = useGetDetailsQuery({ id, category })
+	const { data: TrailerLinkData } = useGetTrailerVideoQuery({ id, category })
+	const title = data && 'title' in data ? data?.title : data?.name
 
 	if (!data) return <div>don't find</div>
 	return (
@@ -22,7 +26,7 @@ const SingleMovie: FC = () => {
 				background: `linear-gradient(to top, #0a0a0a, rgba(0, 0, 0, 0.5)), url(${
 					data.backdrop_path
 						? getOriginalImagePath(data.backdrop_path)
-						: `https://placehold.co/1400x600/000/FFF?text=${data.title.split(' ').join('+')}`
+						: `https://placehold.co/1400x600/000/FFF?text=${title?.split(' ').join('+')}`
 				})`,
 				backgroundPosition: 'center',
 				backgroundSize: 'cover',
@@ -30,14 +34,16 @@ const SingleMovie: FC = () => {
 			<div className='flex pt-60 space-x-16'>
 				<img className='h-[500px] rounded-3xl' src={getWidth500ImagePath(data.poster_path)} />
 				<div>
-					<div className='text-6xl pb-8'>{data.title}</div>
+					<div className='text-6xl pb-8'>{title}</div>
 					<div className='flex space-x-3'>
 						{data.genres.map(genre => (
 							<div key={genre.id} className='border-2 rounded-3xl py-1 px-8'>
 								{genre.name}
 							</div>
 						))}
-						<div className='border-2 rounded-3xl py-1 px-8'>{data.release_date}</div>
+						<div className='border-2 rounded-3xl py-1 px-8'>
+							{'release_date' in data ? data.release_date : data.first_air_date}
+						</div>
 					</div>
 					<div className='text-xl text-justify pt-4'>{data.overview}</div>
 					<div className='flex space-x-8 pt-8'>
@@ -51,7 +57,7 @@ const SingleMovie: FC = () => {
 							{data.vote_average.toFixed(2)}
 						</div>
 					</div>
-					<MovieCredits movieId={movieId || ''} />
+					<Credits id={id} category='movie' />
 				</div>
 			</div>
 
@@ -67,4 +73,4 @@ const SingleMovie: FC = () => {
 	)
 }
 
-export default SingleMovie
+export default SingleMedia

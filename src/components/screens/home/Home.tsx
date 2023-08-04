@@ -12,7 +12,7 @@ const Home: FC = () => {
 				<Trending title='Trending all' linkTo='movie' category='all' />
 				<Trending title='Trending movies' linkTo='movie' category='movie' />
 				<Trending title='Trending TV' linkTo='tv' category='tv' />
-				<Trending title='Trending people' linkTo='person' category='people' />
+				<Trending title='Trending people' linkTo='person' category='person' />
 			</Suspense>
 			<Footer />
 		</div>

@@ -2,13 +2,11 @@ import { FC } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { ITrendingResult } from '../../../../interfaces/ITrendingMovies'
-import { ITrendingPeoplesResult } from '../../../../interfaces/ITrendingPeoples'
-import { ITrendingTVResult } from '../../../../interfaces/ITrendingTV'
+import { TrendingResultsType } from '../../../../interfaces/ITrending'
 import Card from '../../../ui/card/Card'
 
 type propsType = {
-	sliderItems: (ITrendingResult | ITrendingTVResult | ITrendingPeoplesResult)[] | undefined
+	sliderItems: TrendingResultsType[] | undefined
 }
 
 const TrendingSwiper: FC<propsType> = ({ sliderItems }) => {

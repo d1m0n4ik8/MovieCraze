@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/layouts/header/Header'
+import Catalog from './components/screens/catalog/Catalog'
 import Home from './components/screens/home/Home'
-import Movies from './components/screens/movies/Movies'
-import SingleMovie from './components/screens/singleMovie/SingleMovie'
+import SingleMedia from './components/screens/singleMedia/SingleMedia'
 
 const App: FC = () => {
 	return (
@@ -13,8 +13,12 @@ const App: FC = () => {
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route path='/movie'>
-						<Route path='/movie' element={<Movies />} />
-						<Route path='/movie:movieId' element={<SingleMovie />} />
+						<Route path='/movie' element={<Catalog category='movie' />} />
+						<Route path='/movie:id' element={<SingleMedia category='movie' />} />
+					</Route>
+					<Route path='/tv'>
+						<Route path='/tv' element={<Catalog category='tv' />} />
+						<Route path='/tv:id' element={<SingleMedia category='tv' />} />
 					</Route>
 				</Routes>
 			</main>

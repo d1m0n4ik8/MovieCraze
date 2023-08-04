@@ -1,7 +1,8 @@
 import { FC, SetStateAction } from 'react'
+import { timeType } from '../../../../store/api.types'
 type propsType = {
 	time: string
-	setTime: (value: SetStateAction<string>) => void
+	setTime: (value: SetStateAction<timeType>) => void
 }
 
 const TimeTab: FC<propsType> = ({ time, setTime }) => {

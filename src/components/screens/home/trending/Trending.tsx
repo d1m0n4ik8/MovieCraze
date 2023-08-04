@@ -1,19 +1,20 @@
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-import useTrending from '../../../../hooks/useTrending'
+import { useGetTrendingDataQuery } from '../../../../store/api'
+import { categoryType, timeType } from '../../../../store/api.types'
 import TimeTab from '../timeTab/TimeTab'
 import TrendingSwiper from '../trendingSwiper/TrendingSwiper'
 
 type propsType = {
 	title: string
 	linkTo: 'movie' | 'tv' | 'person'
-	category: 'all' | 'movie' | 'tv' | 'people'
+	category: categoryType
 }
 
 const TrendingAll: FC<propsType> = ({ title, linkTo, category }) => {
-	const [time, setTime] = useState('day')
+	const [time, setTime] = useState<timeType>('day')
 
-	const { data } = useTrending(time, category)
+	const { data } = useGetTrendingDataQuery({ time, category })
 
 	return (
 		<>

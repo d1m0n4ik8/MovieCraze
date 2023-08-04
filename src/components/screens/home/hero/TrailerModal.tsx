@@ -1,6 +1,6 @@
 import { FC, SetStateAction } from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { useGetMovieVideoQuery } from '../../../../store/api'
+import { useGetTrailerVideoQuery } from '../../../../store/api'
 
 type trailerPropsType = {
 	modalIsOpened: boolean
@@ -9,7 +9,7 @@ type trailerPropsType = {
 }
 
 const TrailerModal: FC<trailerPropsType> = ({ modalIsOpened, setModalIsOpened, trailerId }) => {
-	const { data, isLoading } = useGetMovieVideoQuery(trailerId)
+	const { data, isLoading } = useGetTrailerVideoQuery({ id: String(trailerId), category: 'movie' })
 	return (
 		<>
 			{modalIsOpened && (

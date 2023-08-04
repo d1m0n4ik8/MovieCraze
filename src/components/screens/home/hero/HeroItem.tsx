@@ -1,12 +1,12 @@
 import { FC, SetStateAction } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { Link } from 'react-router-dom'
-import { IResult } from '../../../../interfaces/IUpcomingMovie'
+import { IMovie } from '../../../../interfaces/IMovie'
 import { getOriginalImagePath, getWidth500ImagePath } from '../../../../store/api'
 import style from '../Home.module.scss'
 
 type HeroItemPropsType = {
-	item: IResult | null
+	item: IMovie | null
 	setTrailerId: (value: SetStateAction<number | null>) => void
 	setModalIsOpened: (value: SetStateAction<boolean>) => void
 }
