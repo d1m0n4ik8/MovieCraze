@@ -8,10 +8,12 @@ import {
 } from '../../../store/api'
 import { movieTvType } from '../../../store/api.types'
 import Credits from './Credits'
+import VideoPlayer from './VideoPlayer'
 
 type propsType = {
 	category: movieTvType
 }
+
 const SingleMedia: FC<propsType> = ({ category }) => {
 	const { id = '' } = useParams()
 	const { data } = useGetDetailsQuery({ id, category })
@@ -48,7 +50,7 @@ const SingleMedia: FC<propsType> = ({ category }) => {
 					<div className='text-xl text-justify pt-4'>{data.overview}</div>
 					<div className='flex space-x-8 pt-8'>
 						<a
-							href={`https://www.youtube.com/embed/${TrailerLinkData?.results[0].key}`}
+							href={`https://www.youtube.com/embed/${TrailerLinkData?.results[0]?.key}`}
 							className='button text-2xl rounded-2xl'
 							target='_blank'>
 							Watch trailer
@@ -57,18 +59,12 @@ const SingleMedia: FC<propsType> = ({ category }) => {
 							{data.vote_average.toFixed(2)}
 						</div>
 					</div>
-					<Credits id={id} category='movie' />
+					<Credits id={id} category={category} />
 				</div>
 			</div>
-
-			<iframe
-				src={`https://3442534688564.svetacdn.in/msNIXXBblTTU?imdb_id=tt0388629`}
-				width='100%'
-				height='100%'
-				title='video'
-				loading='eager'
-				allowFullScreen={true}
-			/>
+			<div className='h-[600px] my-32 pb-4'>
+				<VideoPlayer id={id} category={category} />
+			</div>
 		</div>
 	)
 }

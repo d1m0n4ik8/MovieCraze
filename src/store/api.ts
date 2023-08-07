@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { ICredits } from '../interfaces/ICredits'
 import { IDetailsData } from '../interfaces/IDetails'
 import { IDiscoverData } from '../interfaces/IDiscover'
+import { IExternalIDs } from '../interfaces/IExternalIDs'
 import { IUpcomingMovie } from '../interfaces/IMovie'
 import { ITrailerVideo } from '../interfaces/ITrailerVideo'
 import { TrendingDataType } from '../interfaces/ITrending'
@@ -43,6 +44,9 @@ export const movieApi = createApi({
 		getCredits: builder.query<ICredits, movieTvInfoType>({
 			query: ({ id, category }) => `${category}/${id}/credits`,
 		}),
+		getExternalIDs: builder.query<IExternalIDs, movieTvInfoType>({
+			query: ({ id, category }) => `${category}/${id}/external_ids`,
+		}),
 	}),
 })
 
@@ -54,4 +58,5 @@ export const {
 	useLazyGetSearchedQuery,
 	useGetDetailsQuery,
 	useGetCreditsQuery,
+	useGetExternalIDsQuery,
 } = movieApi
