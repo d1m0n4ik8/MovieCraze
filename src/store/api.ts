@@ -47,6 +47,9 @@ export const movieApi = createApi({
 		getExternalIDs: builder.query<IExternalIDs, movieTvInfoType>({
 			query: ({ id, category }) => `${category}/${id}/external_ids`,
 		}),
+		getSimilar: builder.query<TrendingDataType, movieTvInfoType>({
+			query: ({ id, category }) => `${category}/${id}/similar`,
+		}),
 	}),
 })
 
@@ -59,4 +62,5 @@ export const {
 	useGetDetailsQuery,
 	useGetCreditsQuery,
 	useGetExternalIDsQuery,
+	useGetSimilarQuery,
 } = movieApi

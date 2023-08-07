@@ -1,4 +1,5 @@
 import { IResponse } from './IAdditionalInfo'
+import { ICast } from './ICredits'
 import { IMovie } from './IMovie'
 import { IPerson } from './IPerson'
 import { ITv } from './ITv'
@@ -29,4 +30,4 @@ interface IPersonResult extends IPerson {
 }
 
 export type TrendingDataType = ITrendingMovies | ITrendingTV | ITrendingPeoples
-export type TrendingResultsType = IMovieResult | ITvResult | IPersonResult
+export type TrendingResultsType = IMovieResult | ITvResult | IPersonResult | ICast

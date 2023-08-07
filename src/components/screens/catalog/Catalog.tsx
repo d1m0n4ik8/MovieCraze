@@ -43,7 +43,7 @@ const Catalog: FC<propsType> = ({ category }) => {
 			</div>
 			<div className={`w-full flex justify-center pb-10 ${page < totalPages ? '' : 'hidden '}`}>
 				<button
-					className={`button ${isLoading ? 'cursor-not-allowed' : ''}`}
+					className={`outlinedButton ${isLoading ? 'cursor-not-allowed' : ''}`}
 					onClick={loadMoreHandler}
 					disabled={isLoading}>
 					Load more

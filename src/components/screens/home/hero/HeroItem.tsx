@@ -45,7 +45,7 @@ const HeroItem: FC<HeroItemPropsType> = ({ item, setTrailerId, setModalIsOpened 
 								Watch now
 							</Link>
 							<button className='outlinedButton' onClick={trailerHandler}>
-								Watch now
+								Watch trailer
 							</button>
 						</div>
 					) : (

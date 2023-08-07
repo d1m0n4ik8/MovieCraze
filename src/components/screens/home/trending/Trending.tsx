@@ -29,7 +29,7 @@ const TrendingAll: FC<propsType> = ({ title, linkTo, category }) => {
 							More...
 						</Link>
 					</div>
-					{<TrendingSwiper sliderItems={data?.results} />}
+					{<TrendingSwiper sliderItems={data?.results} category={category} />}
 				</div>
 			)}
 		</>

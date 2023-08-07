@@ -13,11 +13,11 @@ const App: FC = () => {
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route path='/movie'>
-						<Route path='/movie' element={<Catalog category='movie' />} />
+						<Route path='/movie' element={<Catalog key='movie' category='movie' />} />
 						<Route path='/movie:id' element={<SingleMedia category='movie' />} />
 					</Route>
 					<Route path='/tv'>
-						<Route path='/tv' element={<Catalog category='tv' />} />
+						<Route path='/tv' element={<Catalog key='tv' category='tv' />} />
 						<Route path='/tv:id' element={<SingleMedia category='tv' />} />
 					</Route>
 				</Routes>

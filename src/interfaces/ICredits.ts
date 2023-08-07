@@ -10,7 +10,7 @@ interface ICrew extends Team {
 	job: string
 }
 
-interface ICast extends Team {
+export interface ICast extends Team {
 	cast_id: number
 	character: string
 	credit_id: string

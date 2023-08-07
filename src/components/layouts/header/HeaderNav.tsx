@@ -8,11 +8,11 @@ const HeaderNav: FC = () => {
 			<Link className='hover:text-teal-400' to='/movie'>
 				Movies
 			</Link>
-			<Link className='hover:text-teal-400' to='/'>
-				Peoples
+			<Link className='hover:text-teal-400' to='/tv'>
+				Tv
 			</Link>
-			<Link className='hover:text-teal-400' to='/'>
-				More
+			<Link className='hover:text-teal-400' to='/person'>
+				Person
 			</Link>
 
 			<div className='dropdown relative'>
