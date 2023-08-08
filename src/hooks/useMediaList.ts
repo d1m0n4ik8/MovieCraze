@@ -4,7 +4,7 @@ import { ITv } from '../interfaces/ITv'
 import { useLazyGetDiscoverQuery, useLazyGetSearchedQuery } from '../store/api'
 import { movieTvType } from '../store/api.types'
 
-const useMediaList = (queryString: string, category: movieTvType, page: number) => {
+const useMediaList = (queryString: string, category: movieTvType, page: number, activeGenre: number[]) => {
 	const [totalPages, setTotalPages] = useState(1)
 	const [movieList, setMovieList] = useState<(IMovie | ITv)[]>([])
 	const [getDiscoverData, { data: discoverData, isLoading }] = useLazyGetDiscoverQuery()
@@ -20,14 +20,16 @@ const useMediaList = (queryString: string, category: movieTvType, page: number) 
 				},
 			})
 		} else {
+			console.log(activeGenre)
 			getDiscoverData({
 				category,
 				params: {
 					page,
+					with_genres: activeGenre.join(','),
 				},
 			})
 		}
-	}, [getDiscoverData, getSearchData, page, queryString, category])
+	}, [getDiscoverData, getSearchData, page, queryString, category, activeGenre])
 
 	useEffect(() => {
 		if (searchData) {

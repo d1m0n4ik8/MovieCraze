@@ -4,6 +4,7 @@ import { movieTvType } from '../../../store/api.types'
 import Card from '../../ui/card/Card'
 import PageHeader from '../../ui/pageHeader/PageHeader'
 import Search from '../../ui/search/Search'
+import GenresDropdown from './GenresDropdown'
 type propsType = {
 	category: movieTvType
 }
@@ -11,10 +12,17 @@ type propsType = {
 const Catalog: FC<propsType> = ({ category }) => {
 	const [queryString, setQueryString] = useState('')
 	const [page, setPage] = useState(1)
-	const { movieList, setMovieList, isLoading, totalPages } = useMediaList(queryString, category, page)
+	const [activeGenre, setActiveGenre] = useState<number[]>([])
+	const { movieList, setMovieList, isLoading, totalPages } = useMediaList(queryString, category, page, activeGenre)
 
 	const loadMoreHandler = () => {
 		setPage(prev => prev + 1)
+	}
+
+	const setGenre = (genres: number[]) => {
+		setMovieList([])
+		setPage(1)
+		setActiveGenre(genres)
 	}
 
 	const searchHandler = (searchString: string) => {
@@ -29,6 +37,7 @@ const Catalog: FC<propsType> = ({ category }) => {
 		<div className='flex flex-col items-center'>
 			<PageHeader pageTitle={category.toUpperCase()} />
 			<Search searchHandler={searchHandler} />
+			<GenresDropdown activeGenres={activeGenre} setActiveGenre={setGenre} />
 			<div className='grid grid-cols-6 gap-4 py-8'>
 				{!isLoading &&
 					movieList.map(item => (

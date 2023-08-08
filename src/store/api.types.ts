@@ -12,6 +12,7 @@ export type discoveryType = {
 	category: movieTvType
 	params: {
 		page: number
+		with_genres: string
 	}
 }
 

@@ -68,9 +68,7 @@ const SingleMedia: FC<propsType> = ({ category }) => {
 			<div className='md:h-[1000px] px-40 my-20'>
 				<VideoPlayer id={id} category={category} />
 			</div>
-			<div>
-				<Similar id={id} category={category} />
-			</div>
+			<Similar id={id} category={category} />
 		</>
 	)
 }
