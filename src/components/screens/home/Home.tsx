@@ -9,7 +9,7 @@ const Home: FC = () => {
 		<div className='overflow-hidden max-w-full'>
 			<Suspense>
 				<Hero />
-				<Trending title='Trending all' linkTo='movie' category='all' />
+				<Trending title='Trending all' linkTo='movie' category='movie' />
 				<Trending title='Trending movies' linkTo='movie' category='movie' />
 				<Trending title='Trending TV' linkTo='tv' category='tv' />
 				<Trending title='Trending people' linkTo='person' category='person' />

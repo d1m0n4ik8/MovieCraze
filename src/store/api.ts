@@ -4,6 +4,7 @@ import { IDetailsData } from '../interfaces/IDetails'
 import { IDiscoverData } from '../interfaces/IDiscover'
 import { IExternalIDs } from '../interfaces/IExternalIDs'
 import { IUpcomingMovie } from '../interfaces/IMovie'
+import { IPersonImages, IPersonInfo } from '../interfaces/IPerson'
 import { ITrailerVideo } from '../interfaces/ITrailerVideo'
 import { TrendingDataType } from '../interfaces/ITrending'
 import { categoryAndTime, discoveryType, movieTvInfoType, searchType } from './api.types'
@@ -50,6 +51,12 @@ export const movieApi = createApi({
 		getSimilar: builder.query<TrendingDataType, movieTvInfoType>({
 			query: ({ id, category }) => `${category}/${id}/similar`,
 		}),
+		getPersonInfo: builder.query<IPersonInfo, string>({
+			query: id => `person/${id}`,
+		}),
+		getPersonImages: builder.query<IPersonImages, string>({
+			query: id => `person/${id}/images`,
+		}),
 	}),
 })
 
@@ -63,4 +70,6 @@ export const {
 	useGetCreditsQuery,
 	useGetExternalIDsQuery,
 	useGetSimilarQuery,
+	useGetPersonInfoQuery,
+	useGetPersonImagesQuery,
 } = movieApi

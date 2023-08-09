@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Header from './components/layouts/header/Header'
 import Catalog from './components/screens/catalog/Catalog'
 import Home from './components/screens/home/Home'
+import Person from './components/screens/person/Person'
 import SingleMedia from './components/screens/singleMedia/SingleMedia'
 
 const App: FC = () => {
@@ -19,6 +20,10 @@ const App: FC = () => {
 					<Route path='/tv'>
 						<Route path='/tv' element={<Catalog key='tv' category='tv' />} />
 						<Route path='/tv:id' element={<SingleMedia category='tv' />} />
+					</Route>
+					<Route path='/person'>
+						<Route path='/person' element={<Catalog key='person' category='tv' />} />
+						<Route path='/person:id' element={<Person />} />
 					</Route>
 				</Routes>
 			</main>
