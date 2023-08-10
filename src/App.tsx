@@ -22,7 +22,7 @@ const App: FC = () => {
 						<Route path='/tv:id' element={<SingleMedia category='tv' />} />
 					</Route>
 					<Route path='/person'>
-						<Route path='/person' element={<Catalog key='person' category='tv' />} />
+						<Route path='/person' element={<Catalog key='person' category='person' />} />
 						<Route path='/person:id' element={<Person />} />
 					</Route>
 				</Routes>

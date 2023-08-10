@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { IMovie } from '../interfaces/IMovie'
+import { IPerson } from '../interfaces/IPerson'
 import { ITv } from '../interfaces/ITv'
 import { useLazyGetDiscoverQuery, useLazyGetSearchedQuery } from '../store/api'
-import { movieTvType } from '../store/api.types'
+import { movieTvPersonType } from '../store/api.types'
 
-const useMediaList = (queryString: string, category: movieTvType, page: number, activeGenre: number[]) => {
+const useMediaList = (queryString: string, category: movieTvPersonType, page: number, activeGenre: number[]) => {
 	const [totalPages, setTotalPages] = useState(1)
-	const [movieList, setMovieList] = useState<(IMovie | ITv)[]>([])
+	const [movieList, setMovieList] = useState<(IMovie | ITv | IPerson)[]>([])
 	const [getDiscoverData, { data: discoverData, isLoading }] = useLazyGetDiscoverQuery()
 	const [getSearchData, { data: searchData }] = useLazyGetSearchedQuery()
 
@@ -20,14 +21,22 @@ const useMediaList = (queryString: string, category: movieTvType, page: number, 
 				},
 			})
 		} else {
-			console.log(activeGenre)
-			getDiscoverData({
-				category,
-				params: {
-					page,
-					with_genres: activeGenre.join(','),
-				},
-			})
+			if (category === 'person')
+				getSearchData({
+					category,
+					params: {
+						query: 'A',
+						page,
+					},
+				})
+			else
+				getDiscoverData({
+					category,
+					params: {
+						page,
+						with_genres: activeGenre.join(','),
+					},
+				})
 		}
 	}, [getDiscoverData, getSearchData, page, queryString, category, activeGenre])
 

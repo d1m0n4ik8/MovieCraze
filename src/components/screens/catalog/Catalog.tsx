@@ -1,12 +1,12 @@
 import { FC, useState } from 'react'
 import useMediaList from '../../../hooks/useMediaList'
-import { movieTvType } from '../../../store/api.types'
+import { movieTvPersonType } from '../../../store/api.types'
 import Card from '../../ui/card/Card'
 import PageHeader from '../../ui/pageHeader/PageHeader'
 import Search from '../../ui/search/Search'
 import GenresDropdown from './GenresDropdown'
 type propsType = {
-	category: movieTvType
+	category: movieTvPersonType
 }
 
 const Catalog: FC<propsType> = ({ category }) => {
@@ -37,7 +37,7 @@ const Catalog: FC<propsType> = ({ category }) => {
 		<div className='flex flex-col items-center'>
 			<PageHeader pageTitle={category.toUpperCase()} />
 			<Search searchHandler={searchHandler} />
-			<GenresDropdown activeGenres={activeGenre} setActiveGenre={setGenre} />
+			{category !== 'person' && <GenresDropdown activeGenres={activeGenre} setActiveGenre={setGenre} />}
 			<div className='grid grid-cols-6 gap-4 py-8'>
 				{!isLoading &&
 					movieList.map(item => (
@@ -45,7 +45,7 @@ const Catalog: FC<propsType> = ({ category }) => {
 							key={item.id}
 							id={item.id}
 							mediaType={category}
-							imageUrl={item.poster_path}
+							imageUrl={'poster_path' in item ? item.poster_path : item.profile_path}
 							title={'title' in item ? item.title : item.name}
 						/>
 					))}

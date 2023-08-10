@@ -36,7 +36,7 @@ export const movieApi = createApi({
 		getDiscover: builder.query<IDiscoverData, discoveryType>({
 			query: ({ category, params }) => ({ url: `discover/${category}`, params }),
 		}),
-		getSearched: builder.query<IDiscoverData, searchType>({
+		getSearched: builder.query<TrendingDataType, searchType>({
 			query: ({ category, params }) => ({ url: `search/${category}`, params }),
 		}),
 		getDetails: builder.query<IDetailsData, movieTvInfoType>({
