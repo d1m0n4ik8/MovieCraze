@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import {
 	getOriginalImagePath,
@@ -20,6 +20,10 @@ const SingleMedia: FC<propsType> = ({ category }) => {
 	const { data } = useGetDetailsQuery({ id, category })
 	const { data: TrailerLinkData } = useGetTrailerVideoQuery({ id, category })
 	const title = data && 'title' in data ? data?.title : data?.name
+
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [id])
 
 	if (!data) return <div>don't find</div>
 	return (
