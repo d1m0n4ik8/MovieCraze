@@ -6,12 +6,15 @@ import {
 	useGetPersonImagesQuery,
 	useGetPersonInfoQuery,
 } from '../../../store/api'
+import PersonSkeleton from './PersonSkeleton'
 
 const Person: FC = () => {
 	const { id = '' } = useParams()
-	const { data } = useGetPersonInfoQuery(id)
+	const { data, isLoading } = useGetPersonInfoQuery(id)
 	const { data: images } = useGetPersonImagesQuery(id)
-	if (!data) return <div>Not Found</div>
+
+	if (isLoading || !data) return <PersonSkeleton />
+
 	return (
 		<>
 			<div

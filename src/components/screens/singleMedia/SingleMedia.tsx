@@ -9,6 +9,7 @@ import {
 import { movieTvType } from '../../../store/api.types'
 import Credits from './Credits'
 import Similar from './Similar'
+import SingleMediaSkeleton from './SingleMediaSkeleton'
 import VideoPlayer from './VideoPlayer'
 
 type propsType = {
@@ -17,7 +18,7 @@ type propsType = {
 
 const SingleMedia: FC<propsType> = ({ category }) => {
 	const { id = '' } = useParams()
-	const { data } = useGetDetailsQuery({ id, category })
+	const { data, isLoading } = useGetDetailsQuery({ id, category })
 	const { data: TrailerLinkData } = useGetTrailerVideoQuery({ id, category })
 	const title = data && 'title' in data ? data?.title : data?.name
 
@@ -25,7 +26,10 @@ const SingleMedia: FC<propsType> = ({ category }) => {
 		window.scrollTo(0, 0)
 	}, [id])
 
-	if (!data) return <div>don't find</div>
+	if (isLoading || !data) {
+		return <SingleMediaSkeleton />
+	}
+
 	return (
 		<>
 			<div
